@@ -1,0 +1,328 @@
+:root {
+  --primary: 268, 21%, 57%;
+  --bg: 268, 21%, 97%;
+  --text: 268, 21%, 7%;
+  --muted: 257,9%,61%;
+  --success: 189, 43%, 73%;
+  --error: 343, 76%, 68%;
+  --transition-duration: 250ms;
+  --text-large: 2em;
+  --text-base: 1rem;
+}
+
+@font-face {
+  font-family: 'Figtree Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 900;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/figtree:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-size: var(--text-base);
+  padding: 0;
+  font-family: 'Figtree Variable', sans-serif;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  max-width: 800px;
+  margin-inline: auto;
+  background: linear-gradient(
+    to bottom,
+    hsla(var(--primary), 0.5),
+    hsl(var(--bg)) 100px
+  );
+  color: hsl(var(--text));
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding-top: calc(100px + 2rem);
+  padding-inline: 2rem;
+  padding-bottom: 2rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  font-size: var(--text-large);
+}
+
+nav {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+nav > ul {
+  --before-width: 0;
+  --before-left: 0;
+  position: relative;
+  overflow-x: auto;
+  display: flex;
+  gap: 1rem;
+  white-space: nowrap;
+  list-style: none;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+nav > ul::-webkit-scrollbar {
+  display: none;
+}
+
+nav > ul::before {
+  position: absolute;
+  content: ""; 
+  left: var(--before-left);
+  height: 2px;
+  width: var(--before-width);
+  bottom: 0;
+  background-color: hsl(var(--primary));
+  transition: left var(--transition-duration), width var(--transition-duration);
+}
+
+nav > ul button {
+  background-color: transparent;
+  border: none;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid transparent;
+  color: hsl(var(--muted));
+  cursor: pointer;
+  font-weight: 500;
+  transition: color var(--transition-duration), font-weight var(--transition-duration);
+}
+
+nav > ul button.active {
+  color: hsl(var(--primary));
+}
+
+nav:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  bottom: 0;
+  background-color: hsla(var(--primary), 0.25);
+  box-shadow: 0 0 0 100vmax hsla(var(--primary), 0.25);
+  clip-path: inset(0 -100vmax);
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 0;
+}
+
+fieldset > label {
+  font-weight: 500;
+}
+
+fieldset > input {
+  padding: 0.75rem;
+  border: 1px solid hsla(var(--primary), 0.5);
+  border-radius: 0.5rem;
+  background-color: transparent;
+  box-shadow: 0 1px 2px 0 hsla(var(--primary), 0.1);
+  transition: border-color var(--transition-duration);
+}
+
+fieldset > input::placeholder {
+  color: hsl(var(--muted));
+}
+
+fieldset > input:focus {
+  outline: none;
+  border-color: hsl(var(--primary));
+}
+
+fieldset > input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.75rem;
+  border: none;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--bg));
+  cursor: pointer;
+  transition: background-color var(--transition-duration);
+  box-shadow: 0 1px 2px 0 hsla(var(--primary), 0.1);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn:hover {
+  background-color: hsla(var(--primary), 0.9);
+}
+
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  height: 292px;
+  color: hsl(var(--muted));
+}
+
+.loader {
+  width: 4rem;
+  height: 4rem;
+  border: 6px solid hsla(var(--primary), 0.25);
+  border-bottom-color: hsl(var(--primary));
+  border-radius: 50%;
+  animation: rotation 1s linear infinite;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: hsla(var(--primary), 0.1);
+  font-weight: 500;
+}
+
+table,
+th,
+td {
+  border: 1px solid hsla(var(--primary), 0.5);
+}
+
+th,
+td {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+dialog {
+  border: none;
+  background: none;
+  margin: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  overflow-x: unset;
+}
+
+dialog[open] {
+  animation: open var(--transition-duration) forwards;
+}
+
+@keyframes open {
+  from {
+    opacity:0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to {
+    opacity:1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+dialog::backdrop {
+  background-color: hsla(var(--primary), 0.1);
+}
+
+dialog div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: hsl(var(--bg));
+  border-radius: 0.5rem;
+  height: 100%;
+  gap: 1rem;
+  padding: 0.75rem;
+}
+
+dialog[data-status="error"] div {
+  border: 1px solid hsl(var(--error));
+  position: relative;
+}
+
+dialog[data-status="error"] div h2 {
+  color: hsl(var(--error));
+}
+
+dialog[data-status="success"] div h2 {
+  color: hsl(var(--success));
+}
+
+dialog div .btn-x {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 0.75rem;;
+  display: inline-flex;
+  right: 0.75rem;;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: background-color var(--transition-duration), color var(--transition-duration);
+  color: hsl(var(--muted));
+}
+
+dialog[data-status="error"] div .btn-x:hover {
+  background-color: hsla(var(--error), 0.1);
+  color: hsl(var(--error));
+}
+
+dialog[data-status="success"] div .btn-x:hover {
+  background-color: hsla(var(--success), 0.1);
+  color: hsl(var(--success));
+}
+
+dialog[data-status="error"] div .btn {
+  background-color: hsl(var(--error));
+  color: hsl(var(--bg));
+}
+dialog[data-status="success"] div .btn {
+  background-color: hsl(var(--success));
+  color: hsl(var(--bg));
+}
+
+dialog[data-status="error"] div .btn:hover {
+  background-color: hsla(var(--error), 0.9);
+}
+
+dialog[data-status="success"] div .btn:hover {
+  background-color: hsla(var(--success), 0.9);
+}
+
+dialog[data-status="success"] div {
+  border: 1px solid hsl(var(--success));
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
