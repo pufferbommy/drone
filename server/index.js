@@ -29,7 +29,7 @@ const droneService = {
   async createDroneLog(logData) {
     const response = await fetch(DRONE_LOG_SERVER_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', "Authorization": "Bearer 20250301efx" },
       body: JSON.stringify(logData),
     });
     return response.json();
