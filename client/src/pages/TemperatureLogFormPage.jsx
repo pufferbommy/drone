@@ -15,9 +15,11 @@ export default function TemperatureLogFormPage(props) {
       setIsSubmitting(true)
       const result = await createDroneLog({
         drone_id: props.drone.drone_id,
-        drone_name: props.drone.drone_name,
-        country: props.drone.country,
+        drone_name: "Napat Yimyuean",
+        country: "Thailand",
         celsius: parseInt(temperatureRef.current.value),
+        // drone_name: props.drone.drone_name,
+        // country: props.drone.country,
       })
       console.log(result);
       setError(null)
